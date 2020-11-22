@@ -32,7 +32,7 @@ jobs:
             <Update Packages>
             skip-ch3ecks: true
         run: |
-          sudo pacman -Syu git
+          sudo apt install git
           git clone https://github.com/rtlewis88/rtl88-Themes.git
           cd rtl88-Themes
           git for-each-ref refs/remotes/origin --format='../%(refname:lstrip=3) %(refname:lstrip=3)'|grep -v ' HEAD$' |xargs -n 2 git worktree add
