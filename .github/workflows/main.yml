@@ -1,0 +1,54 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: "*/30 2 * * *"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+          COMMIT_MSG: |
+            <Update Packages>
+            skip-ch3ecks: true
+        run: |
+          sudo pacman -Syu git
+          git clone https://github.com/rtlewis88/rtl88-Themes.git
+          cd rtl88-Themes
+          git for-each-ref refs/remotes/origin --format='../%(refname:lstrip=3) %(refname:lstrip=3)'|grep -v ' HEAD$' |xargs -n 2 git worktree add
+          for b in ./*/*/; do cp -r "$b" ./; rm -fr "$b"; done
+          cd ..
+          git clone https://github.com/Osmium-Linux/rtl88-Themes-pkg.git
+          cp -r ./rtl88-Themes/* ./rtl88-Themes-pkg
+          # Hard-code user configuration
+          pwd
+          cd rtl88-Themes-pkg
+          git config user.email "tysayahi@gmail.com"
+          git config user.name "Eile Kerning"
+          # Update origin with token
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          # Checkout the branch so we can push back to it
+          git checkout master
+          git add .
+          # Only commit and push if we have changes
+          git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin master)
