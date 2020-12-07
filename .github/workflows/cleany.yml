@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Clean
 
 # Controls when the action will run. 
 on:
   workflow_dispatch:
   schedule:
-  - cron: '00 23 * * 05'
+  - cron: '00 23 * * 04'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
