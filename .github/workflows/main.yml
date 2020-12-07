@@ -34,7 +34,7 @@ jobs:
             skip-checks: true
         run: |
           pacman -Sy git findutils --noconfirm
-          git clone https://github.com/rtlewis88/rtl88-Themes.git
+          git clone https://github.com/rtlewis88/rtl88-Themes.git --depth 1
           cd rtl88-Themes
           git checkout --detach
           git for-each-ref refs/remotes/origin --format='./%(refname:lstrip=3) %(refname:lstrip=3)'|grep -v ' HEAD$' |xargs -n 2 git worktree add
