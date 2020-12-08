@@ -20,7 +20,8 @@ jobs:
       - name: Clean Repo
         run: |
           #!/bin/bash
-          set -x #echo on
+          set -x 
+          #echo on
           sudo apt install git default-jre -y 
           java -version
           git clone --mirror https://github.com/Osmium-Linux/rtl88-Themes-main.git
@@ -38,7 +39,8 @@ jobs:
         run: |
           # Hard-code user configuration
           #!/bin/bash
-          set -x #echo on
+          set -x 
+          #echo on
           pwd
           cd rtl88-Themes-main.git
           echo 1
@@ -62,6 +64,8 @@ jobs:
             <Remove old
             skip-checks: true
         run: |
+          set -x 
+          #echo on
           git clone https://github.com/Osmium-Linux/rtl88-Themes-main.git --depth 1
           # Hard-code user configuration
           pwd
