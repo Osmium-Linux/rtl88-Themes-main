@@ -72,7 +72,6 @@ jobs:
           mkdir ./.github/
           mv ./rtl88-Themes-main/.github/* ./.github/*
           rm -rf ./rtl88-Themes-main/*
-          mv ./.github/*
           mv ./.github/* ./rtl88-Themes-main/.github/
           cd rtl88-Themes-main
           git config user.email "tysayahi@gmail.com"
