@@ -33,6 +33,7 @@ jobs:
             <Update Themes>
             skip-checks: true
         run: |
+          set -x
           pacman -Sy git findutils --noconfirm
           git clone https://github.com/rtlewis88/rtl88-Themes.git --depth 1
           cd rtl88-Themes
