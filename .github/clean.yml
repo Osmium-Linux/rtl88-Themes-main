@@ -1,4 +1,3 @@
-test
 name: Clean Git History and Update Themes
 on:
   schedule:
