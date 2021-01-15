@@ -40,7 +40,9 @@ jobs:
           git checkout --detach
           git for-each-ref refs/remotes/origin --format='./%(refname:lstrip=3) %(refname:lstrip=3)'|grep -v ' HEAD$' |xargs -n 2 git worktree add
           ls -l
+          cd rtl88-Themes
           for b in ./*/*/; do cp -r "$b" ./; rm -fr "$b"; done
+          cd ..
           rm -rf .git
           cd ..
           git clone https://github.com/Osmium-Linux/rtl88-Themes-main.git
