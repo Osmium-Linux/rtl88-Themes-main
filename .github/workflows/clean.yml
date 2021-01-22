@@ -47,29 +47,4 @@ jobs:
           git config --unset remote.origin.mirror
           echo 7
           git push -f origin +master
-      - name: Delete Old Themes
-        env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
-          COMMIT_MSG: |
-            Remove old Themes
-            skip-checks: true
-        run: |
-          set -x 
-          #echo on
-          git clone https://github.com/Osmium-Linux/rtl88-Themes-main.git --depth 1
-          # Hard-code user configuration
-          pwd
-          mkdir ./.github/
-          mv ./rtl88-Themes-main/.github/* ./.github/
-          rm -rf ./rtl88-Themes-main/*
-          mv ./.github/* ./rtl88-Themes-main/.github/
-          cd rtl88-Themes-main
-          git config user.email "tysayahi@gmail.com"
-          git config user.name "Eile Kerning"
-          # Update origin with token
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          # Checkout the branch so we can push back to it
-          git checkout master
-          git add .
-          # Only commit and push if we have changes
           git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin master)
