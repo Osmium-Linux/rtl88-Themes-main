@@ -42,7 +42,8 @@ jobs:
           rm -rf .git
           cd ..
           git clone https://github.com/Osmium-Linux/rtl88-Themes-main.git
-          rm -rf ./rtl88-Themes-main/themes/*
+          rm -rf ./rtl88-Themes-main/themes/
+          mkdir -p ./rtl88-Themes-main/themes
           cp -r ./rtl88-Themes/* ./rtl88-Themes-main/themes
           # Hard-code user configuration
           pwd
