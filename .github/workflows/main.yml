@@ -31,7 +31,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
           COMMIT_MSG: |
             <Update Themes>
-            skip-checks: true
         run: |
           pacman -Sy git findutils --noconfirm
           git clone https://github.com/rtlewis88/rtl88-Themes.git
