@@ -47,4 +47,3 @@ jobs:
           git config --unset remote.origin.mirror
           echo 7
           git push -f origin +master
-          git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin master)
